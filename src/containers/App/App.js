@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Persons from 'components/Persons/Persons';
+import Cockpit from 'components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -33,29 +33,20 @@ class App extends Component {
     this.setState({persons});
   }
 
-  tooglePersons = () => {
+  togglePersons = () => {
     this.setState({shouldShowPersons: !this.state.shouldShowPersons});
   }
 
   render() {
     const persons = this.state.shouldShowPersons
-      ? this.state.persons.map(person =>
-          <ErrorBoundary key={person.name}>
-            <Person
-              name={person.name}
-              age={person.age}
-              changeAge={this.changeAgeHandler}>
-              My hobbies: Racing
-            </Person>
-          </ErrorBoundary>
-        )
+      ? <Persons persons={this.state.persons} changeAge={this.changeAgeHandler}></Persons>
       : null;
 
     return (
       <div className="App">
-        <h1>I am a React App</h1>
-        <button onClick={this.tooglePersons}>Toggle</button>
-        { persons }
+        <Cockpit tooglePersons={this.togglePersons}>
+          {persons}
+        </Cockpit>
       </div>
     );
   }
