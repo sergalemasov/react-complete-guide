@@ -4,6 +4,10 @@ import Persons from 'components/Persons/Persons';
 import Cockpit from 'components/Cockpit/Cockpit';
 
 class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
+
   state = {
     persons: [
       {
@@ -21,6 +25,10 @@ class App extends Component {
     ],
     shouldShowPersons: true
   };
+
+  static getDerivedStateFromProps(props, state) {
+    return state;
+  }
 
   changeAgeHandler = (name, age) => {
     const persons = this.state.persons.map(person => person.name === name
