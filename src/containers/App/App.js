@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Persons from 'components/Persons/Persons';
 import Cockpit from 'components/Cockpit/Cockpit';
+import withClass from 'hoc/WithClass';
 
 class App extends Component {
   // constructor(props) {
@@ -51,13 +52,13 @@ class App extends Component {
       : null;
 
     return (
-      <div className="App">
-        <Cockpit tooglePersons={this.togglePersons}>
-          {persons}
-        </Cockpit>
-      </div>
+        <div>
+          <Cockpit tooglePersons={this.togglePersons}>
+            {persons}
+          </Cockpit>
+        </div>
     );
   }
 }
 
-export default App;
+export default withClass(App, 'App');
